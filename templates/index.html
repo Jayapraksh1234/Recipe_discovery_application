@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Discovery</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Recipe Discovery</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('add') }}">Add Recipe</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Search for a Recipe</h2>
+        <form action="{{ url_for('index') }}" method="get">
+            <input type="text" name="query" placeholder="Search for a recipe">
+            <button type="submit">Search</button>
+        </form>
+        
+        <h2>Recipe Results</h2>
+        <div id="recipe-container">
+            {% for recipe in recipes %}
+        <div id="recipe-list">
+            <!-- Recipe cards will be dynamically inserted here -->
+            {% for recipe in recipes %}
+                <div class="recipe-card" onclick="openModal('{{ recipe.name }}', '{{ recipe.instructions }}')">
+                    <img src="{{ recipe.image }}" class="recipe-image" alt="{{ recipe.name }}">
+                    <div class="recipe-info">
+                        <h3>{{ recipe.name }}</h3>
+                        <p>{{ recipe.cuisine }}</p>
+                        <p>{{ recipe.ingredients }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Modal for displaying cooking instructions -->
+    <!-- Recipe Modal -->
+<div id="recipeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-recipe-name"></h2>
+        <p id="modal-recipe-instructions"></p>
+    </div>
+</div>
+
+
+    <script src="static/script.js"></script>
+            {% else %}
+            <p>No recipes found. Try a different search.</p>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

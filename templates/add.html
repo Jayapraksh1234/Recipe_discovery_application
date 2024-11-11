@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Discovery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <header>
+        <h1>Recipe Discovery</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('add') }}">Add Recipe</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Add a New Recipe</h2>
+<form action="{{ url_for('add') }}" method="post">
+    <label for="name">Recipe Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="cuisine">Cuisine:</label><br>
+    <input type="text" id="cuisine" name="cuisine" required><br>
+
+    <label for="ingredients">Ingredients:</label><br>
+    <textarea id="ingredients" name="ingredients" required></textarea><br>
+
+    <button type="submit">Add Recipe</button>
+</form>
+    </main>
+</body>
+</html>
